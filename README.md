@@ -79,6 +79,11 @@ This script was designed with the following security controls:
 - **Input Sanitization**: Control characters are stripped from all output fields
 - **Error Handling**: Stack traces are only shown with `-Verbose` to avoid leaking internal paths
 
+## Authors
+
+- **Daniel Barker** - Original author
+- **Claude Opus 4.6** (Anthropic) - Co-author, security hardening and code improvements
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
