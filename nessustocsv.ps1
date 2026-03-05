@@ -154,9 +154,8 @@ function ConvertTo-SafeString {
     # Convert to string if it's not already
     $stringValue = $InputString.ToString()
     
-    # Preserve newlines as " | " for readability in CSV, then remove other control characters
-    $sanitized = $stringValue -replace '\r\n', ' | ' -replace '[\r\n]', ' | '
-    $sanitized = $sanitized -replace '[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]', ''
+    # Remove control characters
+    $sanitized = $stringValue -replace '[\x00-\x1F\x7F]', ''
 
     # Escape double quotes
     $sanitized = $sanitized.Replace('"', '""')
