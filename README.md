@@ -1,6 +1,6 @@
-# NessesScript
+#Nessus/ACAS Script
 
-A security-hardened PowerShell script that converts Nessus XML vulnerability scan files (`.nessus`) to CSV format.
+A security-hardened PowerShell script that converts Nessus/ACAS XML vulnerability scan files (`.nessus`) to CSV format.
 
 ## Features
 
