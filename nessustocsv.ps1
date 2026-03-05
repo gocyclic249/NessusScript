@@ -1,15 +1,15 @@
 ﻿<#
 .SYNOPSIS
-    Converts Nessus XML scan files to CSV format with security-focused implementation.
+    Converts Nessus/ACAS XML scan files to CSV format with security-focused implementation.
 
 .DESCRIPTION
-    This script securely parses Nessus XML vulnerability scan files and exports
+    This script securely parses Nessus/ACAS XML vulnerability scan files and exports
     the results to CSV format. It implements security best practices including
     input validation, error handling, and secure XML processing to prevent
     XML injection attacks and other vulnerabilities.
 
 .PARAMETER NessusFilePath
-    Path to the Nessus XML file to be processed. If not provided, a file dialog will open.
+    Path to the Nessus/ACAS XML file to be processed. If not provided, a file dialog will open.
 
 .PARAMETER OutputCsvPath
     Path where the CSV output file will be saved. If not provided, a save dialog will open.
@@ -39,7 +39,7 @@
 
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory=$false, HelpMessage="Path to the Nessus XML file")]
+    [Parameter(Mandatory=$false, HelpMessage="Path to the Nessus/ACAS XML file")]
     [ValidateNotNullOrEmpty()]
     [string]$NessusFilePath,
     
@@ -171,14 +171,14 @@ function ConvertTo-SafeString {
 function Show-OpenFileDialog {
     <#
     .SYNOPSIS
-        Displays a file open dialog for selecting Nessus files
+        Displays a file open dialog for selecting Nessus/ACAS files
     #>
     param(
         [Parameter(Mandatory=$false)]
-        [string]$Title = "Select Nessus XML File",
+        [string]$Title = "Select Nessus/ACAS XML File",
         
         [Parameter(Mandatory=$false)]
-        [string]$Filter = "Nessus Files (*.nessus)|*.nessus|XML Files (*.xml)|*.xml|All Files (*.*)|*.*"
+        [string]$Filter = "Nessus/ACAS Files (*.nessus)|*.nessus|XML Files (*.xml)|*.xml|All Files (*.*)|*.*"
     )
     
     try {
@@ -253,7 +253,7 @@ function Show-SaveFileDialog {
 function Get-NessusVulnerabilities {
     <#
     .SYNOPSIS
-        Extracts vulnerability data from Nessus XML document
+        Extracts vulnerability data from Nessus/ACAS XML document
     #>
     param(
         [Parameter(Mandatory=$true)]
@@ -267,7 +267,7 @@ function Get-NessusVulnerabilities {
         $reportHosts = $xmlDocument.SelectNodes("//ReportHost")
         
         if ($reportHosts.Count -eq 0) {
-            Write-Warning "No report hosts found in the Nessus file."
+            Write-Warning "No report hosts found in the Nessus/ACAS file."
             return $vulnerabilities
         }
         
@@ -423,12 +423,12 @@ function Export-SecureCsv {
 #region Main Execution
 
 try {
-    Write-Host "`n=== Nessus to CSV Converter ===" -ForegroundColor Cyan
+    Write-Host "`n=== Nessus/ACAS to CSV Converter ===" -ForegroundColor Cyan
     Write-Host "Security-hardened implementation`n" -ForegroundColor Cyan
     
     # Get input file path via dialog if not provided
     if ([string]::IsNullOrEmpty($NessusFilePath)) {
-        Write-Host "Please select the Nessus XML file..." -ForegroundColor Yellow
+        Write-Host "Please select the Nessus/ACAS XML file..." -ForegroundColor Yellow
         $NessusFilePath = Show-OpenFileDialog
         
         if ([string]::IsNullOrEmpty($NessusFilePath)) {
@@ -462,7 +462,7 @@ try {
     Write-Host "Output file: $validatedOutputPath" -ForegroundColor Gray
     
     # Load XML document securely
-    Write-Host "`nLoading Nessus XML file..." -ForegroundColor Yellow
+    Write-Host "`nLoading Nessus/ACAS XML file..." -ForegroundColor Yellow
     $xmlDoc = Get-SecureXmlDocument -XmlPath $validatedInputPath
     Write-Host "XML file loaded successfully." -ForegroundColor Green
     

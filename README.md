@@ -53,7 +53,7 @@ A security-hardened PowerShell script that converts Nessus/ACAS XML vulnerabilit
 | Port | Affected port number |
 | Protocol | Network protocol (tcp/udp) |
 | Service | Service name |
-| PluginID | Nessus plugin identifier |
+| PluginID | Nessus/ACAS plugin identifier |
 | PluginName | Vulnerability name |
 | PluginFamily | Plugin category |
 | Severity | Numeric severity (0=Info, 1=Low, 2=Medium, 3=High, 4=Critical) |
